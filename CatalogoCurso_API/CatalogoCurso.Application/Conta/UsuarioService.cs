@@ -58,18 +58,63 @@ namespace CatalogoCurso.Application.Conta
             return this.Mapper.Map<ProfessorDto>(professor);
         }
 
+
+        public async Task<ProfessorDto> ObterProfessorPorId(Guid id)
+        { 
+            var professor = await this.UsuarioRepository.ObterPorId(id);
+
+            return this.Mapper.Map<ProfessorDto>(professor);
+        }
+
+        public async Task<AlunoDto> CriarAluno(AlunoDto alunoDto)
+        {
+            if (this.UsuarioRepository.Exists(x => x.Email == alunoDto.Email))
+                throw new Exception("Usuário já existente na base");
+
+            var aluno = this.Mapper.Map<Aluno>(alunoDto);
+            var alunoCriado = aluno.Cadastrar(aluno);
+
+            await this.UsuarioRepository.Salvar(alunoCriado);
+            var result = this.Mapper.Map<AlunoDto>(alunoCriado);
+
+            return result;
+        }
+
+        public async Task<AlunoDto> EditarAluno(AlunoDto alunoDto)
+        {
+            var aluno = this.Mapper.Map<Aluno>(alunoDto);
+
+            aluno.Editar(aluno);
+
+            await this.UsuarioRepository.Atualizar(aluno);
+
+            return this.Mapper.Map<AlunoDto>(aluno);
+        }
+
+        public async Task<AlunoDto> ExcluirAluno(Guid id)
+        {
+            var aluno = await this.UsuarioRepository.ObterPorId(id);
+
+            aluno.Excluir(aluno);
+
+            await this.UsuarioRepository.Desativar(aluno);
+
+            return this.Mapper.Map<AlunoDto>(aluno);
+        }
+
+
+        public async Task<AlunoDto> ObterAlunoPorId(Guid id)
+        {
+            var aluno = await this.UsuarioRepository.ObterPorId(id);
+
+            return this.Mapper.Map<AlunoDto>(aluno);
+        }
+
         public async Task<IEnumerable<UsuarioDto>> ObterTodos()
         {
             var usuario = await this.UsuarioRepository.ObterTodos();
 
             return this.Mapper.Map<IEnumerable<UsuarioDto>>(usuario);
-        }
-
-        public async Task<ProfessorDto> ObterPorId(Guid id)
-        { 
-            var professor = await this.UsuarioRepository.ObterPorId(id);
-
-            return this.Mapper.Map<ProfessorDto>(professor);
         }
     }
 }

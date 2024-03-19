@@ -36,19 +36,54 @@ namespace CatalogoCurso.Api.Controllers
 
         [HttpGet]
         [Route("professor/obter-por-id/{id}")]
-        public async Task<IActionResult> ObterPorId(Guid id)
+        public async Task<IActionResult> ObterProfessorPorId(Guid id)
         {
-            var result = await this._usuarioService.ObterPorId(id);
+            var result = await this._usuarioService.ObterProfessorPorId(id);
             return Ok(result);
         }
 
         [HttpPost]
         [Route("professor/excluir/{id}")]
-        public async Task<IActionResult> Excluir(Guid id)
+        public async Task<IActionResult> ExcluirProfessor(Guid id)
         {
             var result = await this._usuarioService.ExcluirProfessor(id);
             return Ok(result);
         }
+
+        [HttpPost]
+        [Route("aluno/criar")]
+        public async Task<IActionResult> CriarAluno([FromBody] AlunoDto dto)
+        {
+            var result = await this._usuarioService.CriarAluno(dto);
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("aluno/editar")]
+        public async Task<IActionResult> EditarAluno([FromBody] AlunoDto dto)
+        {
+            var result = await this._usuarioService.EditarAluno(dto);
+
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("aluno/obter-por-id/{id}")]
+        public async Task<IActionResult> ObterAlunoPorId(Guid id)
+        {
+            var result = await this._usuarioService.ObterAlunoPorId(id);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("aluno/excluir/{id}")]
+        public async Task<IActionResult> ExcluirAluno(Guid id)
+        {
+            var result = await this._usuarioService.ExcluirAluno(id);
+            return Ok(result);
+        }
+
 
         [HttpGet]
         [Route("obter-todos")]

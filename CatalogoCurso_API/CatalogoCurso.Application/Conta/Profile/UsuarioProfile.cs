@@ -21,6 +21,15 @@ namespace CatalogoCurso.Application.Conta.Profile
 
                 });
 
+            CreateMap<AlunoDto, Aluno>();
+
+            CreateMap<Aluno, AlunoDto>()
+                .AfterMap((s, d) =>
+                {
+                    d.Senha = "xxxxxxxxx";
+
+                });
+
             CreateMap<UsuarioDto, Usuario>();
 
             CreateMap<Usuario, UsuarioDto>()
