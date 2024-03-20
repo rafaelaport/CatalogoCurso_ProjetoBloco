@@ -25,12 +25,9 @@ namespace CatalogoCurso.Domain.Curso
         public Guid SegmentoId { get; set; }
         public Segmento Segmento { get; set; }
 
-        public DateTime? DataAtualizacao { get; set; }
-
         public void Destivar()
         {
             Ativo = false;
-            DataAtualizacao = DateTime.Now;
         }
 
         public Curso Cadastrar(Curso curso)
@@ -49,7 +46,6 @@ namespace CatalogoCurso.Domain.Curso
             ModalidadeEnsinoId = curso.ModalidadeEnsinoId;
             TipoCursoId = curso.TipoCursoId;
             SegmentoId = curso.SegmentoId;
-            DataAtualizacao = DateTime.Now;
         }
     }
 }
