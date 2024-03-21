@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace CatalogoCurso.Repository.Mapping.Curso
 {
-    public class CursoMapping : IEntityTypeConfiguration<Domain.Curso.Curso>
+    public class DisciplinaMapping : IEntityTypeConfiguration<Domain.Curso.Disciplina>
     {
-        public void Configure(EntityTypeBuilder<Domain.Curso.Curso> builder)
+        public void Configure(EntityTypeBuilder<Domain.Curso.Disciplina> builder)
         {
             builder.ToTable("Curso");
             builder.HasKey(x => x.Id);
@@ -25,7 +25,6 @@ namespace CatalogoCurso.Repository.Mapping.Curso
 
             builder.HasOne(x => x.ModalidadeEnsino).WithMany().HasForeignKey(y => y.ModalidadeEnsinoId);
             builder.HasOne(x => x.Segmento).WithMany().HasForeignKey(y => y.SegmentoId);
-            builder.HasOne(x => x.TipoCurso).WithMany().HasForeignKey(y => y.TipoCursoId);
 
             builder.Property(x => x.DataCadastro).IsRequired();
             builder.Property(x => x.Ativo).IsRequired();

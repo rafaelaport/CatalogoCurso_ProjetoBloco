@@ -9,29 +9,27 @@ using System.Threading.Tasks;
 
 namespace CatalogoCurso.Repository.Repository
 {
-    public class CursoRepository : RepositoryBase<Curso>, ICursoRepository
+    public class DisciplinaRepository : RepositoryBase<Disciplina>, IDisciplinaRepository
     {
-        public CursoRepository(CatalogoCursoContext context) : base(context)
+        public DisciplinaRepository(CatalogoCursoContext context) : base(context)
         {
 
         }
 
-        public override async Task<IEnumerable<Curso>> ObterTodos()
+        public override async Task<IEnumerable<Disciplina>> ObterTodos()
         {
             return await this.Query
                              .Include(c => c.ModalidadeEnsino)
-                             .Include(c => c.TipoCurso)
                              .Include(c => c.Segmento)
                              .Where(c => c.Ativo)
                              .AsNoTrackingWithIdentityResolution()
                              .ToListAsync();
         }
 
-        public override async Task<Curso> ObterPorId(Guid id)
+        public override async Task<Disciplina> ObterPorId(Guid id)
         {
             return await this.Query
                              .Include(c => c.ModalidadeEnsino)
-                             .Include(c => c.TipoCurso)
                              .Include(c => c.Segmento)
                               .AsNoTrackingWithIdentityResolution()
                               .FirstOrDefaultAsync(x => x.Id == id && x.Ativo);

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CatalogoCurso.Domain.Curso.Factory
 {
-    public static class CursoFactory
+    public static class DisciplinaFactory
     {
-        public static Curso Cadastrar(Curso curso)
+        public static Disciplina Cadastrar(Disciplina curso)
         {
-            return new Curso
+            return new Disciplina
             {
                 Nome = curso.Nome,
                 Objetivo = curso.Objetivo,
@@ -18,7 +18,6 @@ namespace CatalogoCurso.Domain.Curso.Factory
                 Avaliacao = curso.Avaliacao,
                 Certificacao = curso.Certificacao,
                 ModalidadeEnsinoId = curso.ModalidadeEnsinoId,
-                TipoCursoId = curso.TipoCursoId,
                 SegmentoId = curso.SegmentoId,
                 DataCadastro = DateTime.Now,
                 Ativo = true

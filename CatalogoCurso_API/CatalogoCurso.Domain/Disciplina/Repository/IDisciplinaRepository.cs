@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace CatalogoCurso.Domain.Curso.Repository
 {
-    public interface ITipoCursoRepository : IRepository<TipoCurso>
+    public interface IDisciplinaRepository : IRepository<Disciplina>
     {
+   
     }
 }

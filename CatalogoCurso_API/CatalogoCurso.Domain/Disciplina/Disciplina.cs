@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CatalogoCurso.Domain.Curso
 {
-    public class Curso : Entity<Curso>
+    public class Disciplina : Entity<Disciplina>
     {
         public string Nome { get; set; }
         public string? Objetivo { get; set; }
@@ -19,9 +19,6 @@ namespace CatalogoCurso.Domain.Curso
         public Guid ModalidadeEnsinoId { get; set; } // Ead ou prensencial
         public ModalidadeEnsino ModalidadeEnsino { get; set; } // Ead ou prensencial
 
-        public Guid TipoCursoId { get; set; }
-        public TipoCurso TipoCurso { get; set; }
-
         public Guid SegmentoId { get; set; }
         public Segmento Segmento { get; set; }
 
@@ -30,12 +27,12 @@ namespace CatalogoCurso.Domain.Curso
             Ativo = false;
         }
 
-        public Curso Cadastrar(Curso curso)
+        public Disciplina Cadastrar(Disciplina curso)
         {
-            return CursoFactory.Cadastrar(curso);
+            return DisciplinaFactory.Cadastrar(curso);
         }
 
-        public void Atualizar(Curso curso)
+        public void Atualizar(Disciplina curso)
         {
             Id = curso.Id;
             Nome = curso.Nome;
@@ -44,7 +41,6 @@ namespace CatalogoCurso.Domain.Curso
             Avaliacao = curso.Avaliacao;
             Certificacao = curso.Certificacao;
             ModalidadeEnsinoId = curso.ModalidadeEnsinoId;
-            TipoCursoId = curso.TipoCursoId;
             SegmentoId = curso.SegmentoId;
         }
     }
