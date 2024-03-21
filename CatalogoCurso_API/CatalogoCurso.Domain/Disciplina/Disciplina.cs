@@ -1,12 +1,12 @@
 ﻿using CatalogoCurso.CrossCutting.Entity;
-using CatalogoCurso.Domain.Curso.Factory;
+using CatalogoCurso.Domain.Disciplina.Factory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CatalogoCurso.Domain.Curso
+namespace CatalogoCurso.Domain.Disciplina
 {
     public class Disciplina : Entity<Disciplina>
     {

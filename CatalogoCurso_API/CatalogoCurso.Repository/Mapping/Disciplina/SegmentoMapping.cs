@@ -1,4 +1,4 @@
-﻿using CatalogoCurso.Domain.Curso;
+﻿using CatalogoCurso.Domain.Disciplina;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;

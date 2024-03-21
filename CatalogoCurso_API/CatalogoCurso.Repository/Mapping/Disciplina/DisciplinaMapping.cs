@@ -1,4 +1,4 @@
-﻿using CatalogoCurso.Domain.Curso;
+﻿using CatalogoCurso.Domain.Disciplina;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace CatalogoCurso.Repository.Mapping.Curso
 {
-    public class DisciplinaMapping : IEntityTypeConfiguration<Domain.Curso.Disciplina>
+    public class DisciplinaMapping : IEntityTypeConfiguration<Domain.Disciplina.Disciplina>
     {
-        public void Configure(EntityTypeBuilder<Domain.Curso.Disciplina> builder)
+        public void Configure(EntityTypeBuilder<Domain.Disciplina.Disciplina> builder)
         {
             builder.ToTable("Curso");
             builder.HasKey(x => x.Id);

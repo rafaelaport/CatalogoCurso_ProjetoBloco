@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CatalogoCurso.Domain.Curso.Factory
+namespace CatalogoCurso.Domain.Disciplina.Factory
 {
     public static class DisciplinaFactory
     {

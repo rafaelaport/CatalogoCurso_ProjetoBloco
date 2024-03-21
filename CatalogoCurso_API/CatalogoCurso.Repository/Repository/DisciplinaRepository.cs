@@ -1,5 +1,5 @@
-﻿using CatalogoCurso.Domain.Curso;
-using CatalogoCurso.Domain.Curso.Repository;
+﻿using CatalogoCurso.Domain.Disciplina;
+using CatalogoCurso.Domain.Disciplina.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

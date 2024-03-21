@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CatalogoCurso.Domain.Curso.Repository
+namespace CatalogoCurso.Domain.Disciplina.Repository
 {
     public interface ISegmentoRepository : IRepository<Segmento>
     {

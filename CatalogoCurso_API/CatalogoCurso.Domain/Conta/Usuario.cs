@@ -1,6 +1,6 @@
 ﻿using CatalogoCurso.CrossCutting.Entity;
 using CatalogoCurso.Domain.Conta.Factory;
-using CatalogoCurso.Domain.Curso.Factory;
+using CatalogoCurso.Domain.Disciplina.Factory;
 using System;
 using System.Collections.Generic;
 using System.Linq;

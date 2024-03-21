@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CatalogoCurso.Domain.Curso
+namespace CatalogoCurso.Domain.Disciplina
 {
     public class ModalidadeEnsino : Entity<ModalidadeEnsino>
     {

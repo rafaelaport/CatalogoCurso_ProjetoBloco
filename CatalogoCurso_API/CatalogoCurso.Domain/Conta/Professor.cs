@@ -1,4 +1,4 @@
-﻿using CatalogoCurso.Domain.Curso;
+﻿using CatalogoCurso.Domain.Disciplina;
 using System;
 using System.Collections.Generic;
 using System.Linq;
