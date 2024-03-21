@@ -12,5 +12,10 @@ namespace CatalogoCurso.Domain.Turma
     {
         public int Horario { get; set; }
         public int Sala {get; set; }
+
+        public Guid ProfessorId { get; set; }
+        public Guid AlunoId { get; set; }
+        public Guid UnidadeId { get; set; }
+        public Guid DisciplinaId { get; set; }
     }
 }

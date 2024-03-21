@@ -16,6 +16,8 @@ namespace CatalogoCurso.Repository.Mapping.Turma
 
             builder.Property(x => x.DataCadastro).IsRequired();
             builder.Property(x => x.Ativo).IsRequired();
+
+            //builder.HasMany(x => x.).WithMany().HasForeignKey(y => y.ModalidadeEnsinoId);
         }
     }
 }

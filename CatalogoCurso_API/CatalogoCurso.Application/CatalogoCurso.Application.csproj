@@ -15,4 +15,8 @@
     <ProjectReference Include="..\CatalogoCurso.Repository\CatalogoCurso.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Disciplina\Profile\" />
+  </ItemGroup>
+
 </Project>
