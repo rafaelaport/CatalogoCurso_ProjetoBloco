@@ -3,6 +3,9 @@ using CatalogoCurso.Application.Conta;
 using CatalogoCurso.Repository;
 using CatalogoCurso.Repository.Repository;
 using Microsoft.EntityFrameworkCore;
+using CatalogoCurso.Application.Disciplina;
+using CatalogoCurso.Application.Turma;
+using CatalogoCurso.Application.Unidade;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,9 +25,15 @@ builder.Services.AddAutoMapper(typeof(UsuarioProfile).Assembly);
 
 //Repositories
 builder.Services.AddScoped<UsuarioRepository>();
+builder.Services.AddScoped<DisciplinaRepository>();
+builder.Services.AddScoped<TurmaRepository>();
+builder.Services.AddScoped<UnidadeRepository>();
 
 //Services
 builder.Services.AddScoped<UsuarioService>();
+builder.Services.AddScoped<DisciplinaService>();
+builder.Services.AddScoped<TurmaService>();
+builder.Services.AddScoped<UnidadeService>();
 
 var app = builder.Build();
 
