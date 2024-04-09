@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CatalogoCurso.Application.Turma.Dto;
 using CatalogoCurso.Application.Unidade.Dto;
+using CatalogoCurso.Domain.Turma.Repository;
 using CatalogoCurso.Repository.Repository;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,9 @@ namespace CatalogoCurso.Application.Turma
     public class TurmaService
     {
         private IMapper Mapper { get; set; }
-        private TurmaRepository TurmaRepository { get; set; }
+        private ITurmaRepository TurmaRepository { get; set; }
 
-        public TurmaService(IMapper mapper, TurmaRepository turmaRepository)
+        public TurmaService(IMapper mapper, ITurmaRepository turmaRepository)
         {
             Mapper = mapper;
             TurmaRepository = turmaRepository;

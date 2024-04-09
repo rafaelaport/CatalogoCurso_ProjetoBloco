@@ -35,6 +35,8 @@ namespace CatalogoCurso.Domain.Turma
             Alunos = turma.Alunos;
             Unidade = turma.Unidade;
             Disciplina = turma.Disciplina;
+            DataCadastro = DateTime.Now;
+            Ativo = true;
         }
 
         public void Destivar()

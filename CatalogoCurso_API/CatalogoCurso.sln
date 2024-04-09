@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogoCurso.CrossCutting"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogoCurso.Api", "CatalogoCurso.Api\CatalogoCurso.Api.csproj", "{F7C17991-98D0-4BEB-BA4D-F01083546568}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogoCurso.Application", "CatalogoCurso.Application\CatalogoCurso.Application.csproj", "{F3277E62-1EEE-46D1-8BD3-56EBD5A0F418}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CatalogoCurso.Application", "CatalogoCurso.Application\CatalogoCurso.Application.csproj", "{F3277E62-1EEE-46D1-8BD3-56EBD5A0F418}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatalogoCurso.Test", "CatalogoCurso.Test\CatalogoCurso.Test.csproj", "{543FCC5B-3BCD-485F-A6CC-4F6D22E114B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{F3277E62-1EEE-46D1-8BD3-56EBD5A0F418}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3277E62-1EEE-46D1-8BD3-56EBD5A0F418}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3277E62-1EEE-46D1-8BD3-56EBD5A0F418}.Release|Any CPU.Build.0 = Release|Any CPU
+		{543FCC5B-3BCD-485F-A6CC-4F6D22E114B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{543FCC5B-3BCD-485F-A6CC-4F6D22E114B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{543FCC5B-3BCD-485F-A6CC-4F6D22E114B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{543FCC5B-3BCD-485F-A6CC-4F6D22E114B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

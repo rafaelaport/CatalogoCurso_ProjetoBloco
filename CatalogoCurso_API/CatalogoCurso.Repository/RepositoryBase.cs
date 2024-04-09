@@ -43,7 +43,7 @@ namespace CatalogoCurso.Repository
                              .AsNoTrackingWithIdentityResolution()
                              .ToListAsync();
         }
-        public async Task Salvar(T entity)
+        public virtual async Task Salvar(T entity)
         {
             await this.Query.AddAsync(entity);
             await this.Context.SaveChangesAsync();

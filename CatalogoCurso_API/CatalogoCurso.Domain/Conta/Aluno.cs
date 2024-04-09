@@ -10,6 +10,7 @@ namespace CatalogoCurso.Domain.Conta
     public class Aluno : Usuario
     {
         public string Matricula { get; set; }
+        public List<Domain.Turma.Turma> Turmas { get; set; }
 
         public void Editar(Aluno aluno)
         {

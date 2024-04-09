@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +14,9 @@ namespace CatalogoCurso.CrossCutting.Repository
         Task Atualizar(T entity);
         Task<T> ObterPorId(Guid id);
         Task<IEnumerable<T>> ObterTodos();
-        
+        bool Exists(Expression<Func<T, bool>> expression);
+
+
 
     }
 }

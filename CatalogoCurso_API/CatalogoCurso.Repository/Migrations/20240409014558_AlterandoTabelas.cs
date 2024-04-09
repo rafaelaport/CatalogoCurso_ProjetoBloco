@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CatalogoCurso.Repository.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialDatabase : Migration
+    public partial class AlterandoTabelas : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -40,17 +40,17 @@ namespace CatalogoCurso.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TipoCurso",
+                name: "Unidade",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Descricao = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Endereco = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Ativo = table.Column<bool>(type: "bit", nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TipoCurso", x => x.Id);
+                    table.PrimaryKey("PK_Unidade", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -71,7 +71,7 @@ namespace CatalogoCurso.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Curso",
+                name: "Disciplina",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -81,31 +81,23 @@ namespace CatalogoCurso.Repository.Migrations
                     Avaliacao = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     Certificacao = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     ModalidadeEnsinoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    TipoCursoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SegmentoId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DataAtualizacao = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Ativo = table.Column<bool>(type: "bit", nullable: false),
                     DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Curso", x => x.Id);
+                    table.PrimaryKey("PK_Disciplina", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Curso_ModalidadeEnsino_ModalidadeEnsinoId",
+                        name: "FK_Disciplina_ModalidadeEnsino_ModalidadeEnsinoId",
                         column: x => x.ModalidadeEnsinoId,
                         principalTable: "ModalidadeEnsino",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Curso_Segmento_SegmentoId",
+                        name: "FK_Disciplina_Segmento_SegmentoId",
                         column: x => x.SegmentoId,
                         principalTable: "Segmento",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Curso_TipoCurso_TipoCursoId",
-                        column: x => x.TipoCursoId,
-                        principalTable: "TipoCurso",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -146,42 +138,123 @@ namespace CatalogoCurso.Repository.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Turma",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Horario = table.Column<int>(type: "int", nullable: false),
+                    Sala = table.Column<int>(type: "int", nullable: false),
+                    ProfessorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UnidadeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DisciplinaId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Ativo = table.Column<bool>(type: "bit", nullable: false),
+                    DataCadastro = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Turma", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Turma_Disciplina_DisciplinaId",
+                        column: x => x.DisciplinaId,
+                        principalTable: "Disciplina",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Turma_Professor_ProfessorId",
+                        column: x => x.ProfessorId,
+                        principalTable: "Professor",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Turma_Unidade_UnidadeId",
+                        column: x => x.UnidadeId,
+                        principalTable: "Unidade",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "AlunoTurma",
+                columns: table => new
+                {
+                    AlunosId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TurmasId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AlunoTurma", x => new { x.AlunosId, x.TurmasId });
+                    table.ForeignKey(
+                        name: "FK_AlunoTurma_Aluno_AlunosId",
+                        column: x => x.AlunosId,
+                        principalTable: "Aluno",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_AlunoTurma_Turma_TurmasId",
+                        column: x => x.TurmasId,
+                        principalTable: "Turma",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_Curso_ModalidadeEnsinoId",
-                table: "Curso",
+                name: "IX_AlunoTurma_TurmasId",
+                table: "AlunoTurma",
+                column: "TurmasId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Disciplina_ModalidadeEnsinoId",
+                table: "Disciplina",
                 column: "ModalidadeEnsinoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Curso_SegmentoId",
-                table: "Curso",
+                name: "IX_Disciplina_SegmentoId",
+                table: "Disciplina",
                 column: "SegmentoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Curso_TipoCursoId",
-                table: "Curso",
-                column: "TipoCursoId");
+                name: "IX_Turma_DisciplinaId",
+                table: "Turma",
+                column: "DisciplinaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Turma_ProfessorId",
+                table: "Turma",
+                column: "ProfessorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Turma_UnidadeId",
+                table: "Turma",
+                column: "UnidadeId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AlunoTurma");
+
+            migrationBuilder.DropTable(
                 name: "Aluno");
 
             migrationBuilder.DropTable(
-                name: "Curso");
+                name: "Turma");
+
+            migrationBuilder.DropTable(
+                name: "Disciplina");
 
             migrationBuilder.DropTable(
                 name: "Professor");
+
+            migrationBuilder.DropTable(
+                name: "Unidade");
 
             migrationBuilder.DropTable(
                 name: "ModalidadeEnsino");
 
             migrationBuilder.DropTable(
                 name: "Segmento");
-
-            migrationBuilder.DropTable(
-                name: "TipoCurso");
 
             migrationBuilder.DropTable(
                 name: "Usuario");

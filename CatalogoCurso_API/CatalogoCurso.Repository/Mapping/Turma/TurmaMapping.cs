@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using CatalogoCurso.Domain.Conta;
 
 namespace CatalogoCurso.Repository.Mapping.Turma
 {
@@ -18,7 +19,10 @@ namespace CatalogoCurso.Repository.Mapping.Turma
             builder.Property(x => x.Ativo).IsRequired();
 
             builder.HasOne(x => x.Professor).WithMany();
-            builder.HasMany(x => x.Alunos).WithMany();
+            builder.HasMany(x => x.Alunos).WithMany(x => x.Turmas)
+                .UsingEntity<Dictionary<string, object>>(
+                    x => x.HasOne<Aluno>().WithMany().OnDelete(DeleteBehavior.Restrict),
+                    x => x.HasOne<Domain.Turma.Turma>().WithMany().OnDelete(DeleteBehavior.Restrict)); 
             builder.HasOne(x => x.Disciplina).WithMany();
             builder.HasOne(x => x.Unidade).WithMany();
         }

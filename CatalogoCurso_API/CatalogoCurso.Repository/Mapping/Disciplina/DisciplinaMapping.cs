@@ -13,7 +13,7 @@ namespace CatalogoCurso.Repository.Mapping.Curso
     {
         public void Configure(EntityTypeBuilder<Domain.Disciplina.Disciplina> builder)
         {
-            builder.ToTable("Curso");
+            builder.ToTable("Disciplina");
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
 

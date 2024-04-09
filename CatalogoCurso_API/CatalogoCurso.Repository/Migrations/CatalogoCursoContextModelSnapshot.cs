@@ -22,6 +22,21 @@ namespace CatalogoCurso.Repository.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("AlunoTurma", b =>
+                {
+                    b.Property<Guid>("AlunosId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("TurmasId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("AlunosId", "TurmasId");
+
+                    b.HasIndex("TurmasId");
+
+                    b.ToTable("AlunoTurma");
+                });
+
             modelBuilder.Entity("CatalogoCurso.Domain.Conta.Usuario", b =>
                 {
                     b.Property<Guid>("Id")
@@ -59,7 +74,7 @@ namespace CatalogoCurso.Repository.Migrations
                     b.UseTptMappingStrategy();
                 });
 
-            modelBuilder.Entity("CatalogoCurso.Domain.Curso.Curso", b =>
+            modelBuilder.Entity("CatalogoCurso.Domain.Disciplina.Disciplina", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -80,9 +95,6 @@ namespace CatalogoCurso.Repository.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.Property<DateTime?>("DataAtualizacao")
-                        .HasColumnType("datetime2");
-
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
@@ -101,21 +113,16 @@ namespace CatalogoCurso.Repository.Migrations
                     b.Property<Guid>("SegmentoId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("TipoCursoId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ModalidadeEnsinoId");
 
                     b.HasIndex("SegmentoId");
 
-                    b.HasIndex("TipoCursoId");
-
-                    b.ToTable("Curso", (string)null);
+                    b.ToTable("Disciplina", (string)null);
                 });
 
-            modelBuilder.Entity("CatalogoCurso.Domain.Curso.ModalidadeEnsino", b =>
+            modelBuilder.Entity("CatalogoCurso.Domain.Disciplina.ModalidadeEnsino", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -137,7 +144,7 @@ namespace CatalogoCurso.Repository.Migrations
                     b.ToTable("ModalidadeEnsino", (string)null);
                 });
 
-            modelBuilder.Entity("CatalogoCurso.Domain.Curso.Segmento", b =>
+            modelBuilder.Entity("CatalogoCurso.Domain.Disciplina.Segmento", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -159,7 +166,7 @@ namespace CatalogoCurso.Repository.Migrations
                     b.ToTable("Segmento", (string)null);
                 });
 
-            modelBuilder.Entity("CatalogoCurso.Domain.Curso.TipoCurso", b =>
+            modelBuilder.Entity("CatalogoCurso.Domain.Turma.Turma", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -171,14 +178,51 @@ namespace CatalogoCurso.Repository.Migrations
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Descricao")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                    b.Property<Guid>("DisciplinaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Horario")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ProfessorId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Sala")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("UnidadeId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TipoCurso", (string)null);
+                    b.HasIndex("DisciplinaId");
+
+                    b.HasIndex("ProfessorId");
+
+                    b.HasIndex("UnidadeId");
+
+                    b.ToTable("Turma", (string)null);
+                });
+
+            modelBuilder.Entity("CatalogoCurso.Domain.Unidade.Unidade", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Ativo")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("DataCadastro")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Endereco")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Unidade", (string)null);
                 });
 
             modelBuilder.Entity("CatalogoCurso.Domain.Conta.Aluno", b =>
@@ -205,31 +249,65 @@ namespace CatalogoCurso.Repository.Migrations
                     b.ToTable("Professor", (string)null);
                 });
 
-            modelBuilder.Entity("CatalogoCurso.Domain.Curso.Curso", b =>
+            modelBuilder.Entity("AlunoTurma", b =>
                 {
-                    b.HasOne("CatalogoCurso.Domain.Curso.ModalidadeEnsino", "ModalidadeEnsino")
+                    b.HasOne("CatalogoCurso.Domain.Conta.Aluno", null)
+                        .WithMany()
+                        .HasForeignKey("AlunosId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("CatalogoCurso.Domain.Turma.Turma", null)
+                        .WithMany()
+                        .HasForeignKey("TurmasId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CatalogoCurso.Domain.Disciplina.Disciplina", b =>
+                {
+                    b.HasOne("CatalogoCurso.Domain.Disciplina.ModalidadeEnsino", "ModalidadeEnsino")
                         .WithMany()
                         .HasForeignKey("ModalidadeEnsinoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CatalogoCurso.Domain.Curso.Segmento", "Segmento")
+                    b.HasOne("CatalogoCurso.Domain.Disciplina.Segmento", "Segmento")
                         .WithMany()
                         .HasForeignKey("SegmentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CatalogoCurso.Domain.Curso.TipoCurso", "TipoCurso")
-                        .WithMany()
-                        .HasForeignKey("TipoCursoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("ModalidadeEnsino");
 
                     b.Navigation("Segmento");
+                });
 
-                    b.Navigation("TipoCurso");
+            modelBuilder.Entity("CatalogoCurso.Domain.Turma.Turma", b =>
+                {
+                    b.HasOne("CatalogoCurso.Domain.Disciplina.Disciplina", "Disciplina")
+                        .WithMany()
+                        .HasForeignKey("DisciplinaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CatalogoCurso.Domain.Conta.Professor", "Professor")
+                        .WithMany()
+                        .HasForeignKey("ProfessorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CatalogoCurso.Domain.Unidade.Unidade", "Unidade")
+                        .WithMany()
+                        .HasForeignKey("UnidadeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Disciplina");
+
+                    b.Navigation("Professor");
+
+                    b.Navigation("Unidade");
                 });
 
             modelBuilder.Entity("CatalogoCurso.Domain.Conta.Aluno", b =>

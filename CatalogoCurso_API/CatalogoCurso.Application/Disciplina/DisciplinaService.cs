@@ -2,6 +2,7 @@
 using CatalogoCurso.Application.Conta.Dto;
 using CatalogoCurso.Application.Disciplina.Dto;
 using CatalogoCurso.Domain.Conta;
+using CatalogoCurso.Domain.Disciplina.Repository;
 using CatalogoCurso.Repository.Repository;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,9 @@ namespace CatalogoCurso.Application.Disciplina
     public class DisciplinaService
     {
         private IMapper Mapper { get; set; }
-        private DisciplinaRepository DisciplinaRepository { get; set; }
+        private IDisciplinaRepository DisciplinaRepository { get; set; }
 
-        public DisciplinaService(IMapper mapper, DisciplinaRepository disciplinaRepository)
+        public DisciplinaService(IMapper mapper, IDisciplinaRepository disciplinaRepository)
         {
             Mapper = mapper;
             DisciplinaRepository = disciplinaRepository;

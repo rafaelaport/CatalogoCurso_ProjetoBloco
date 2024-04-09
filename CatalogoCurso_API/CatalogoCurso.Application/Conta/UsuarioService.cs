@@ -14,9 +14,9 @@ namespace CatalogoCurso.Application.Conta
     public class UsuarioService
     {
         private IMapper Mapper { get; set; }
-        private UsuarioRepository UsuarioRepository { get; set; }
+        private IUsuarioRepository UsuarioRepository { get; set; }
 
-        public UsuarioService(IMapper mapper, UsuarioRepository usuarioRepository)
+        public UsuarioService(IMapper mapper, IUsuarioRepository usuarioRepository)
         {
             Mapper = mapper;
             UsuarioRepository = usuarioRepository;

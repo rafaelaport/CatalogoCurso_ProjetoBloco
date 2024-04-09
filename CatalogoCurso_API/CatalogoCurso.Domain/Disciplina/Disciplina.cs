@@ -42,6 +42,8 @@ namespace CatalogoCurso.Domain.Disciplina
             Certificacao = curso.Certificacao;
             ModalidadeEnsinoId = curso.ModalidadeEnsinoId;
             SegmentoId = curso.SegmentoId;
+            DataCadastro = DateTime.Now;
+            Ativo = true;
         }
     }
 }

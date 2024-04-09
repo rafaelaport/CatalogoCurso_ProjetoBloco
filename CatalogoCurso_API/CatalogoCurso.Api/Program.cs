@@ -6,6 +6,10 @@ using Microsoft.EntityFrameworkCore;
 using CatalogoCurso.Application.Disciplina;
 using CatalogoCurso.Application.Turma;
 using CatalogoCurso.Application.Unidade;
+using CatalogoCurso.Domain.Conta.Repository;
+using CatalogoCurso.Domain.Disciplina.Repository;
+using CatalogoCurso.Domain.Turma.Repository;
+using CatalogoCurso.Domain.Unidade.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,10 +28,10 @@ builder.Services.AddDbContext<CatalogoCursoContext>(c =>
 builder.Services.AddAutoMapper(typeof(UsuarioProfile).Assembly);
 
 //Repositories
-builder.Services.AddScoped<UsuarioRepository>();
-builder.Services.AddScoped<DisciplinaRepository>();
-builder.Services.AddScoped<TurmaRepository>();
-builder.Services.AddScoped<UnidadeRepository>();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IDisciplinaRepository, DisciplinaRepository>();
+builder.Services.AddScoped<ITurmaRepository, TurmaRepository>();
+builder.Services.AddScoped<IUnidadeRepository, UnidadeRepository>();
 
 //Services
 builder.Services.AddScoped<UsuarioService>();

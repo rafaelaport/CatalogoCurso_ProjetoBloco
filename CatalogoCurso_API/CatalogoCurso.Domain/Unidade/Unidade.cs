@@ -28,6 +28,8 @@ namespace CatalogoCurso.Domain.Unidade
         {
             Id = unidade.Id;
             Endereco = unidade.Endereco;
+            DataCadastro = DateTime.Now;
+            Ativo = true;
         }
     }
 }

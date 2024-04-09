@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CatalogoCurso.Application.Unidade.Dto;
+using CatalogoCurso.Domain.Unidade.Repository;
 using CatalogoCurso.Repository.Repository;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,9 @@ namespace CatalogoCurso.Application.Unidade
     public class UnidadeService
     {
         private IMapper Mapper { get; set; }
-        private UnidadeRepository UnidadeRepository { get; set; }
+        private IUnidadeRepository UnidadeRepository { get; set; }
 
-        public UnidadeService(IMapper mapper, UnidadeRepository unidadeRepository)
+        public UnidadeService(IMapper mapper, IUnidadeRepository unidadeRepository)
         {
             Mapper = mapper;
             UnidadeRepository = unidadeRepository;
