@@ -22,34 +22,63 @@ namespace CatalogoCurso.Api.Controllers
         [Route("criar")]
         public async Task<IActionResult> CriarDisciplina([FromBody] DisciplinaDto dto)
         {
-            var result = await this._disciplinaService.CriarDisciplina(dto);
+            try
+            {
+                var result = await this._disciplinaService.CriarDisciplina(dto);
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
         }
 
         [HttpPost]
         [Route("editar")]
         public async Task<IActionResult> EditarDisciplina([FromBody] DisciplinaDto dto)
         {
-            var result = await this._disciplinaService.EditarDisciplina(dto);
+            try
+            {
+                var result = await this._disciplinaService.EditarDisciplina(dto);
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet]
         [Route("obter-por-id/{id}")]
         public async Task<IActionResult> ObterDisciplinaPorId(Guid id)
         {
-            var result = await this._disciplinaService.ObterDisciplinaPorId(id);
-            return Ok(result);
+            try
+            {
+                var result = await this._disciplinaService.ObterDisciplinaPorId(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost]
         [Route("excluir/{id}")]
         public async Task<IActionResult> ExcluirDisciplina(Guid id)
         {
-            var result = await this._disciplinaService.ExcluirDisciplina(id);
-            return Ok(result);
+            try
+            {
+                var result = await this._disciplinaService.ExcluirDisciplina(id);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
 
@@ -57,8 +86,15 @@ namespace CatalogoCurso.Api.Controllers
         [Route("obter-todos")]
         public async Task<IActionResult> ObterTodos()
         {
-            var result = await this._disciplinaService.ObterTodos();
-            return Ok(result);
+            try
+            {
+                var result = await this._disciplinaService.ObterTodos();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
